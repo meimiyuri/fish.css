@@ -149,9 +149,9 @@ a:hover { color: #999; }
   100% { transform: translate(var(--x1, 110vw), var(--y1, -10vh)); }
 }
 @keyframes fishSway {
-  0%   { transform: translate(0,0) rotate(0deg)   scale(var(--scale, .30)); }
-  50%  { transform: translate(1vw,-0.6vh) rotate(2deg) scale(var(--scale, .30)); }
-  100% { transform: translate(0,0) rotate(0deg)   scale(var(--scale, .30)); }
+  0%   { transform: translate(0,0) rotate(0deg)   scale(var(--scale, .20)); }
+  50%  { transform: translate(1vw,-0.6vh) rotate(2deg) scale(var(--scale, .20)); }
+  100% { transform: translate(0,0) rotate(0deg)   scale(var(--scale, .20)); }
 }
 
 /* ===== Motion preferences ===== */
