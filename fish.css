@@ -1,249 +1,167 @@
+/* ===== Base / layout ===== */
+* { box-sizing: border-box; }
+:root { color-scheme: light; }
+
 body {
-	background: #6ca3a3;
+  background-color: #FCE5ED;
+  font-family: monospace, calibri, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  text-shadow: 0 0 1px #b3b3b3;
+  color: #888;
+  letter-spacing: 1px;
+  margin: 0;
 }
 
-#fish {
-	top: 5em;
-}
-/* Fish Animation */
-svg.fish {
-	overflow: visible;
-}
+.center { text-align: center; }
 
-@-webkit-keyframes swim {
-	0% {
-		margin-left: -235px;
-	}
-	90% {
-		margin-left: 100%;
-	}
-	100% {
-		margin-left: 100%;
-	}
-}
+#wrapper { max-width: 850px; width: 100%; margin: 60px auto; padding: 0 12px; }
 
-@keyframes swim {
-	0% {
-		margin-left: -235px;
-	}
-	70% {
-		margin-left: 100%;
-	}
-	100% {
-		margin-left: 100%;
-	}
-}
-
-.fish {
-	width: 235px;
-	height: 104px;
-	margin-left: -235px;
-	position: absolute;
-	animation: swim 20s;
-	-webkit-animation: swim 20s;
-	animation-iteration-count: infinite;
-	-webkit-animation-iteration-count: infinite;
-	animation-timing-function: linear;
-	-webkit-animation-timing-function: linear;
-}
-
-svg #fish1,
-svg #fish2,
-svg #fish3,
-svg #fish4,
-svg #fish5,
-svg #fish6 {
-	fill: #528484;
-
-	-moz-animation: bounce 2s infinite;
-	-webkit-animation: bounce 2s infinite;
-	animation: bounce 2s infinite;
-}
-
-svg #fish2 {
-	animation-delay: 0.5s;
-	-webkit-animation-delay: 0.5s;
-}
-
-svg #fish3 {
-	animation-delay: 0.2s;
-	-webkit-animation-delay: 0.2s;
-}
-
-svg #fish4 {
-	animation-delay: 0.4s;
-	-webkit-animation-delay: 0.4s;
-}
-
-svg #fish5 {
-	animation-delay: 0.1s;
-	-webkit-animation-delay: 0.1s;
-}
-
-svg #fish6 {
-	animation-delay: 0.3s;
-	-webkit-animation-delay: 0.3s;
-}
-
-/**/
-@-moz-keyframes bounce {
-	0%,
-	50%,
-	100% {
-		-moz-transform: translateY(0);
-		transform: translateY(0);
-	}
-	25% {
-		-moz-transform: translateY(-5px);
-		transform: translateY(-5px);
-	}
-	75% {
-		-moz-transform: translateY(-3px);
-		transform: translateY(-3px);
-	}
-}
-@-webkit-keyframes bounce {
-	0%,
-	50%,
-	100% {
-		-webkit-transform: translateY(0);
-		transform: translateY(0);
-	}
-	25% {
-		-webkit-transform: translateY(-5px);
-		transform: translateY(-5px);
-	}
-	75% {
-		-webkit-transform: translateY(-3px);
-		transform: translateY(-3px);
-	}
-}
-@keyframes bounce {
-	0%,
-	50%,
-	100% {
-		-moz-transform: translateY(0);
-		-ms-transform: translateY(0);
-		-webkit-transform: translateY(0);
-		transform: translateY(0);
-	}
-	25% {
-		-moz-transform: translateY(-5px);
-		-ms-transform: translateY(-5px);
-		-webkit-transform: translateY(-5px);
-		transform: translateY(-5px);
-	}
-	75% {
-		-moz-transform: translateY(-3px);
-		-ms-transform: translateY(-3px);
-		-webkit-transform: translateY(-3px);
-		transform: translateY(-3px);
-	}
-}
-/* ==== Floating SVG background (behind all content) ==== */
-.fish-bg {
-  position: fixed;      /* pin to viewport like a background */
-  inset: 0;
+#headerwrap, #navigationwrap, #contentwrap, #footerwrap {
+  max-width: 850px;
   width: 100%;
-  height: 100%;
-  z-index: -1;          /* sit behind all page content */
-  pointer-events: none; /* never intercept taps/clicks */
-  display: block;
+  margin: 0 auto;
 }
 
-/* Make the SVG fill the viewport */
-.fish-bg svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  /* Keep aspect ratio while scaling to viewport */
-  preserveAspectRatio: xMidYMid slice;
+/* Header */
+#header {
+  background: #fff;
+  border: 1px solid #ebebeb;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  margin: 0;
+  padding: 20px 10px 10px;
 }
 
-/* All fish paths share these rules */
-.fish-shape {
-  opacity: var(--opacity, 0.18);
-  transform-box: fill-box;     /* needed for reliable transforms in SVG */
-  transform-origin: center;    /* rotate/scale around center */
-  will-change: transform;      /* hint for smoother animation */
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,.15));
-  animation:
-    fishFloat var(--dur, 60s) linear var(--delay, 0s) infinite,
-    fishSway  var(--swayDur, 7s) ease-in-out var(--swayDelay, 0s) infinite;
+.headertext { font-size: 20px; font-style: italic; color: #E4CCD4; }
+
+/* Responsive images */
+img { max-width: 100%; height: auto; display: block; }
+.header-banner { max-height: 240px; margin: 0 auto; }
+
+/* Navigation */
+#navigation {
+  background: #fff;
+  border: 1px solid #ebebeb;
+  margin: 0;
+  padding: 8px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-height: 30px;
 }
 
-/* Gentle up-right drift across the viewport */
-@keyframes fishFloat {
-  0%   { transform: translate(var(--x0, -15vw), var(--y0, 80vh)) scale(var(--scale, 1)) rotate(0deg); }
-  100% { transform: translate(var(--x1, 115vw), var(--y1, -10vh)) scale(var(--scale, 1)) rotate(360deg); }
+#navigation a:link,
+#navigation a:visited,
+#navigation a:active {
+  font: 20px monospace;
+  text-transform: uppercase;
+  line-height: 20px;
+  padding: 4px;
+  letter-spacing: 2px;
+  color: #888;
+  text-decoration: none;
+}
+#navigation a:hover { background: #fff; letter-spacing: 4px; color: #666; }
+
+/* Content */
+#content {
+  background: #fff;
+  border: 1px solid #ebebeb;
+  margin: 0;
+  padding: 10px;
 }
 
-/* Small side-to-side / bobbing motion layered on top */
-@keyframes fishSway {
-  0%, 100% { transform: translate(0,0) rotate(0deg); }
-  50%      { transform: translate(1.2vw, -0.6vh) rotate(2deg); }
+#leftcolumnwrap { width: 200px; margin: 0 auto; }
+#leftcolumn { background: #fff; border: 1px solid #ebebeb; margin: 0; padding: 5px; }
+
+/* Footer */
+#footer {
+  height: 20px; line-height: 20px; text-align: center;
+  background: #fff; border: 1px solid #ebebeb; margin: 0;
+  border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;
 }
 
-/* Respect reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  .fish-shape { animation: none; }
+/* Titles */
+.title {
+  background: #FBEFF3; text-transform: uppercase;
+  font: 20px monospace; letter-spacing: 3px; color: #555;
+  padding: 2px 0 2px 4px; margin-bottom: 4px;
+}
+.title2 {
+  background: #E9F9FF; text-transform: uppercase;
+  letter-spacing: 3px; color: #555;
+  padding: 2px 0 2px 4px; margin-bottom: 8px; font-size: 13px;
 }
 
-/* Background container */
+b { color: #B39781; }
+
+/* Global links */
+a:link, a:visited, a:active { color: #666; text-decoration: none; }
+a:hover { color: #999; }
+
+/* (Optional) WebKit scrollbars */
+::-webkit-scrollbar { width: 7px; height: 4px; background: #fff; }
+::-webkit-scrollbar-thumb { background-color: #fff; border-radius: 0; border: 1px solid #999; }
+
+/* ===== Floating fish background ===== */
 .fish-bg {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: -1;         /* behind everything */
   pointer-events: none;
   display: block;
 }
 
-/* Make SVG fill viewport */
 .fish-bg svg {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-/* Each fish wrapper: opacity only here */
+/* Each fish group controls opacity */
 .fish {
   opacity: var(--opacity, 0.18);
 }
 
-/* Outer group = long drift across the screen */
+/* Outer group: long drift across screen */
 .fish-float {
   transform-box: fill-box;
   transform-origin: center;
   animation: fishFloat var(--dur, 60s) linear var(--delay, 0s) infinite;
 }
 
-/* Inner group = gentle sway/rotation + fixed scale */
+/* Inner group: gentle sway + fixed scale (size control here) */
 .fish-sway {
   transform-box: fill-box;
   transform-origin: center;
   animation: fishSway var(--swayDur, 7s) ease-in-out var(--swayDelay, 0s) infinite;
 }
 
-/* Color (change if you like) */
+/* Color for all fish paths */
 .fish path { fill: #528484; }
 
-/* Keyframes: use nested elements so transforms don't overwrite each other */
+/* Keyframes */
 @keyframes fishFloat {
   0%   { transform: translate(var(--x0, -20vw), var(--y0, 80vh)); }
   100% { transform: translate(var(--x1, 110vw), var(--y1, -10vh)); }
 }
 @keyframes fishSway {
-  0%   { transform: translate(0,0) rotate(0deg)   scale(var(--scale, .45)); }
-  50%  { transform: translate(1vw,-0.6vh) rotate(2deg) scale(var(--scale, .45)); }
-  100% { transform: translate(0,0) rotate(0deg)   scale(var(--scale, .45)); }
+  0%   { transform: translate(0,0) rotate(0deg)   scale(var(--scale, .30)); }
+  50%  { transform: translate(1vw,-0.6vh) rotate(2deg) scale(var(--scale, .30)); }
+  100% { transform: translate(0,0) rotate(0deg)   scale(var(--scale, .30)); }
 }
 
-/* Respect reduced motion */
+/* ===== Motion preferences ===== */
+/* Default: RESPECT reduced motion (comment this block out to ignore it) */
 @media (prefers-reduced-motion: reduce) {
-  .fish-float, .fish-sway { animation: none; }
+  .fish-float, .fish-sway { animation: none !important; }
 }
 
-
-/*END Fish Animation*/
+/* Force animations ON regardless of OS setting (uncomment to override) */
+/*
+.fish-float { animation: fishFloat var(--dur,60s) linear var(--delay,0s) infinite !important; }
+.fish-sway  { animation: fishSway  var(--swayDur,7s) ease-in-out var(--swayDelay,0s) infinite !important; }
+*/
