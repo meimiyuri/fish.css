@@ -140,5 +140,53 @@ svg #fish6 {
 		transform: translateY(-3px);
 	}
 }
+/* ==== Floating SVG background (behind all content) ==== */
+.fish-bg {
+  position: fixed;      /* pin to viewport like a background */
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;          /* sit behind all page content */
+  pointer-events: none; /* never intercept taps/clicks */
+  display: block;
+}
+
+/* Make the SVG fill the viewport */
+.fish-bg svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* Keep aspect ratio while scaling to viewport */
+  preserveAspectRatio: xMidYMid slice;
+}
+
+/* All fish paths share these rules */
+.fish-shape {
+  opacity: var(--opacity, 0.18);
+  transform-box: fill-box;     /* needed for reliable transforms in SVG */
+  transform-origin: center;    /* rotate/scale around center */
+  will-change: transform;      /* hint for smoother animation */
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.15));
+  animation:
+    fishFloat var(--dur, 60s) linear var(--delay, 0s) infinite,
+    fishSway  var(--swayDur, 7s) ease-in-out var(--swayDelay, 0s) infinite;
+}
+
+/* Gentle up-right drift across the viewport */
+@keyframes fishFloat {
+  0%   { transform: translate(var(--x0, -15vw), var(--y0, 80vh)) scale(var(--scale, 1)) rotate(0deg); }
+  100% { transform: translate(var(--x1, 115vw), var(--y1, -10vh)) scale(var(--scale, 1)) rotate(360deg); }
+}
+
+/* Small side-to-side / bobbing motion layered on top */
+@keyframes fishSway {
+  0%, 100% { transform: translate(0,0) rotate(0deg); }
+  50%      { transform: translate(1.2vw, -0.6vh) rotate(2deg); }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .fish-shape { animation: none; }
+}
 
 /*END Fish Animation*/
