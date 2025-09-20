@@ -116,8 +116,8 @@ a:hover { color: #999; }
 }
 
 .fish-bg svg {
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
   display: block;
 }
 
@@ -141,7 +141,7 @@ a:hover { color: #999; }
 }
 
 /* Color for all fish paths */
-.fish path { fill: #528484; }
+.fish path { fill: #CBC3E3; }
 
 /* Keyframes */
 @keyframes fishFloat {
