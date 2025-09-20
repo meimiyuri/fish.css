@@ -189,4 +189,61 @@ svg #fish6 {
   .fish-shape { animation: none; }
 }
 
+/* Background container */
+.fish-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  display: block;
+}
+
+/* Make SVG fill viewport */
+.fish-bg svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Each fish wrapper: opacity only here */
+.fish {
+  opacity: var(--opacity, 0.18);
+}
+
+/* Outer group = long drift across the screen */
+.fish-float {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fishFloat var(--dur, 60s) linear var(--delay, 0s) infinite;
+}
+
+/* Inner group = gentle sway/rotation + fixed scale */
+.fish-sway {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fishSway var(--swayDur, 7s) ease-in-out var(--swayDelay, 0s) infinite;
+}
+
+/* Color (change if you like) */
+.fish path { fill: #528484; }
+
+/* Keyframes: use nested elements so transforms don't overwrite each other */
+@keyframes fishFloat {
+  0%   { transform: translate(var(--x0, -20vw), var(--y0, 80vh)); }
+  100% { transform: translate(var(--x1, 110vw), var(--y1, -10vh)); }
+}
+@keyframes fishSway {
+  0%   { transform: translate(0,0) rotate(0deg)   scale(var(--scale, .45)); }
+  50%  { transform: translate(1vw,-0.6vh) rotate(2deg) scale(var(--scale, .45)); }
+  100% { transform: translate(0,0) rotate(0deg)   scale(var(--scale, .45)); }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fish-float, .fish-sway { animation: none; }
+}
+
+
 /*END Fish Animation*/
